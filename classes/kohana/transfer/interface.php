@@ -56,4 +56,9 @@ interface Kohana_Transfer_Interface
    * Disconnect from server
    */
   public function __destruct();
+
+  /**
+   * Executes a command in the server
+   */
+  public function exec($command);
 }
