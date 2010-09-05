@@ -87,50 +87,86 @@ class Kohana_Transfer_SFTP extends Transfer implements Kohana_Transfer_Interface
 
   /**
    * Downloads a remote file to a local file
+   * 
+   * @param string $remote_file path to the remote file
+   * @param string $local_file path to the local file
+   * @return bool TRUE on success or FALSE on failure
    */
   public function download($remote_file, $local_file)
   {
     $this->connect();
+
+    return @ssh2_scp_recv($this->_ssh2, $remote_file, $local_file);
   }
 
   /**
    * Uploads a local file to a remote server
+   *
+   * @param string $local_file path to the local file
+   * @param string $remote_file path to the remote file
+   * @param int $create_mode the file will be created with the mode specified by this param
+   * @return bool TRUE on success or FALSE on failure
    */
   public function upload($local_file, $remote_file, $create_mode = 0644)
   {
     $this->connect();
+
+    return @ssh2_scp_send($this->_ssh2, $local_file, $remote_file, $create_mode);
   }
 
   /**
    * Creates a remote directory
+   *
+   * @param string $dirname path of the new directory
+   * @param integer $mode permissions on the new directory
+   * @param bool $recursive If TRUE any parent directories required for dirname will be automatically created as well
+   * @return bool TRUE on success or FALSE on failure
    */
   public function mkdir($dirname, $mode = 0777, $recursive = false)
   {
     $this->connect();
+
+    return @ssh2_sftp_mkdir($this->_sftp, $dirname, $mode, $recursive);
   }
 
   /**
    * Deletes a remote directory
+   *
+   * @param string $dirname path of the directory
+   * @return bool TRUE on success or FALSE on failure
    */
   public function rmdir($dirname)
   {
     $this->connect();
+
+    return @ssh2_sftp_rmdir($this->_sftp, $dirname);
   }
 
   /**
    * Deletes a remote file
+   *
+   * @param string $remote_file path to the remote file
+   * @return bool TRUE on success or FALSE on failure
    */
   public function delete($remote_file)
   {
     $this->connect();
+
+    return @ssh2_sftp_unlink($this->_sftp, $remote_file);
   }
 
   /**
    * Renames a remote file
+   *
+   * @param string $from the current file that is being renamed
+   * @param string $to the new file name that replaces
+   * @return bool TRUE on success or FALSE on failure
    */
   public function rename($from, $to)
   {
     $this->connect();
+
+    return @ssh2_sftp_rename($this->_sftp, $from, $to);
   }
 
   /**
