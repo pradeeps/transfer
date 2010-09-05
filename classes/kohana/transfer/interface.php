@@ -18,6 +18,11 @@ interface Kohana_Transfer_Interface
   public function check();
 
   /**
+   * More info about this driver
+   */
+  public function info();
+
+  /**
    * Connect operation
    */
   public function connect();

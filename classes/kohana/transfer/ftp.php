@@ -27,6 +27,16 @@ class Kohana_Transfer_FTP extends Transfer implements Kohana_Transfer_Interface
   }
 
   /**
+   * More info about this driver
+   *
+   * @return string information
+   */
+  public function info()
+  {
+    return 'http://php.net/manual/en/book.ftp.php';
+  }
+
+  /**
    * Connect operation
    */
   public function connect()

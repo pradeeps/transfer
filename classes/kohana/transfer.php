@@ -52,7 +52,7 @@ abstract class Kohana_Transfer
     // Checks if driver can be used
     if( ! $this->check() )
     {
-      throw new Kohana_Transfer_Exception(Kohana::message('transfer', 'not_related_functions'), array(':url' => 'http://php.net/manual/en/book.ssh2.php'));
+      throw new Kohana_Transfer_Exception(Kohana::message('transfer', 'not_related_functions'), array(':url' => $this->info()));
     }
   }
 }

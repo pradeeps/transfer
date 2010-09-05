@@ -32,6 +32,16 @@ class Kohana_Transfer_SFTP extends Transfer implements Kohana_Transfer_Interface
   }
 
   /**
+   * More info about this driver
+   *
+   * @return string information
+   */
+  public function info()
+  {
+    return 'http://php.net/manual/en/book.ssh2.php';
+  }
+
+  /**
    * Connect operation
    */
   public function connect()
