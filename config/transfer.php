@@ -11,6 +11,22 @@
  */
 
 return array(
-    // Default driver
-    'default' => 'FTP',
+    'default' => array(
+        'driver'      => 'FTP',
+        'hostname'    => 'localhost',
+        'port'        => 21,
+        'username'    => '',
+        'password'    => '',
+    ),
+
+    'sftp'    => array(
+        'driver'      => 'SFTP',
+        'hostname'    => 'localhost',
+        'port'        => 22,
+        'username'    => '',
+        //'pubkeyfile'  => '/path/to/id_rsa.pub',
+        //'privkeyfile' => '/path/to/id_rsa',
+        'password'    => '',
+        //'fingerprint' => '',
+    ),
 );
