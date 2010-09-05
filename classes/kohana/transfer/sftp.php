@@ -42,7 +42,7 @@ class Kohana_Transfer_SFTP extends Transfer implements Kohana_Transfer_Interface
       return;
     }
     
-    // Realizar la conexión al servidor
+    // Connect to server
     $host = ( isset($this->_config['hostname']) ) ? $this->_config['hostname'] : 'localhost';
     $port = ( isset($this->_config['port']) ) ? $this->_config['port'] : 22;
     $username = ( isset($this->_config['username']) ) ? $this->_config['username'] : '';
@@ -55,7 +55,7 @@ class Kohana_Transfer_SFTP extends Transfer implements Kohana_Transfer_Interface
       throw new Kohana_Transfer_Exception(Kohana::message('transfer', 'fail_open_connection'), array(':host' => $host, 'port' => $port));
     }
 
-    // Si se especifica el campo fingerprint en la configuracion compararlo con el del servidor
+    // Check fingerprint if it is specified
     if( isset($this->_config['fingerprint']) )
     {
       if( strtolower(ssh2_fingerprint($this->_ssh2)) != strtolower($this->_config['fingerprint']) )
@@ -64,7 +64,7 @@ class Kohana_Transfer_SFTP extends Transfer implements Kohana_Transfer_Interface
       }
     }
 
-    // Si se especifica un certificado, realizar la conexión con él
+    // Connect with certificate if it is specified
     if( isset($this->_config['pubkeyfile']) AND isset($this->_config['privkeyfile']) )
     {
       if( ! @ssh2_auth_pubkey_file($this->_ssh2, $username, $this->_config['pubkeyfile'], $this->_config['privkeyfile'], $password) )
@@ -72,7 +72,7 @@ class Kohana_Transfer_SFTP extends Transfer implements Kohana_Transfer_Interface
         throw new Kohana_Transfer_Exception(Kohana::message('transfer', 'fail_authentication'));
       }
     }
-    // Si no, autenticar de la forma tradicional
+    // If not, uses user/password combination
     else
     {
       if( ! @ssh2_auth_password($this->_ssh2, $username, $password) )
