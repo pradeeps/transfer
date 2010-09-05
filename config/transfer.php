@@ -11,6 +11,7 @@
  */
 
 return array(
+    /*
     'default' => array(
         'driver'      => 'FTP',
         'hostname'    => 'localhost',
@@ -24,9 +25,10 @@ return array(
         'hostname'    => 'localhost',
         'port'        => 22,
         'username'    => '',
-        //'pubkeyfile'  => '/path/to/id_rsa.pub',
-        //'privkeyfile' => '/path/to/id_rsa',
+        'pubkeyfile'  => '/path/to/id_rsa.pub',
+        'privkeyfile' => '/path/to/id_rsa',
         'password'    => '',
-        //'fingerprint' => '',
+        'fingerprint' => '',
     ),
+    */
 );
