@@ -25,6 +25,13 @@ abstract class Kohana_Transfer
    */
   public static function factory($group = 'default')
   { 
+    static $instances = array();
+    
+    if(isset($instances[$group]))
+    {
+      return $instances[$group];
+    }
+
     $config = Kohana::config('transfer');
 
     if ( ! $config->offsetExists($group))
@@ -37,7 +44,7 @@ abstract class Kohana_Transfer
     // Set the class name
     $class = 'Transfer_'.$config['driver'];
 
-    return new $class($config);
+    return $instances[$group] = new $class($config);
   }
 
   /**
