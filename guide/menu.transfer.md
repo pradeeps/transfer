@@ -1,5 +1,4 @@
 1. **Transfer**
-   - [About](transfer.about)
-   - [Configuration](transfer.config)
-   - [Usage](transfer.usage)
-   - [Examples](transfer.examples)
+   - [General](transfer.about)
+   - [Configuración](transfer.config)
+   - [Uso](transfer.usage)
