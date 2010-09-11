@@ -10,10 +10,10 @@ de configuración, haciendo uso del patrón _singleton_, lo que nos ayuda a ahor
 a través de las diferentes partes de nuestra aplicación.
 
 	// Usando el grupo de configuración por defecto
-	$my_transfer = Transfer::factory();
+	$my_transfer = Transfer::instance();
 	
 	// Usando el grupo 'sftp'
-	$my_ftp = Transfer::factory('sftp');
+	$my_ftp = Transfer::instance('sftp');
 
 ## Descargar un archivo
 
@@ -23,7 +23,7 @@ la ruta del archivo local donde será almacenado tras la descarga.
 
 _Ejemplo de descarga de un archivo_
 
-	if( Transfer::factory()->download('/pub/archivo.bin', '/home/usuario/archivo-descargado.bin') )
+	if( Transfer::instance()->download('/pub/archivo.bin', '/home/usuario/archivo-descargado.bin') )
 	{
 		echo 'Descarga efectuada correctamente';
 	}
@@ -40,7 +40,7 @@ o permisos de unix con los que se creará el archivo en el caso de que nuestro s
 
 _Ejemplo de subida de un archivo_
 
-	if( Transfer::factory()->upload('/home/usuario/discurso.odt', '/congreso/caade2010/discurso.odt') )
+	if( Transfer::instance()->upload('/home/usuario/discurso.odt', '/congreso/caade2010/discurso.odt') )
 	{
 		echo 'Archivo almacenado correctamente';
 	}
@@ -56,7 +56,7 @@ la ruta al archivo con el nombre ya cambiado.
 
 _Ejemplo del cambio de nombre en un archivo_
 
-	Transfer::factory()->rename('/pub/binarytree.x', '/pub/arbolbinario.x');
+	Transfer::instance()->rename('/pub/binarytree.x', '/pub/arbolbinario.x');
 
 ## Eliminar un archivo
 
@@ -64,7 +64,7 @@ El método __delete($remote_file)__ elimina el archivo situado en la ruta del se
 
 _Ejemplo de la eliminación de un archivo_
 
-	Transfer::factory()->delete('/docs/caade2010/guide.pdf');
+	Transfer::instance()->delete('/docs/caade2010/guide.pdf');
 
 ## Crear un directorio
 
@@ -73,7 +73,7 @@ situados en la ruta no existen el directorio no será creado a no ser que `recur
 
 _Ejemplo de creación de un directorio_
 
-	Transfer::factory()->mkdir('/pub/files/xyz', 0755, true);
+	Transfer::instance()->mkdir('/pub/files/xyz', 0755, true);
 
 ## Eliminar un directorio
 
@@ -81,7 +81,7 @@ Para eliminar un directorio este debe estar vacío (sin archivos). El método __
 
 _Ejemplo de la eliminación de un directorio vacío_
 
-	Transfer::factory()->rmdir('/pub/files/xyz');
+	Transfer::instance()->rmdir('/pub/files/xyz');
 
 ## Ejecutar un comando en el servidor
 
@@ -90,6 +90,6 @@ puede devolver una cadena (_string_) o un vector (_array_) con la/las respuestas
 
 _Ejemplo de ejecución de un comando_
 
-	$response = Transfer::factory()->exec('ls -la');
+	$response = Transfer::instance()->exec('ls -la');
 	
 	var_dump($response);

@@ -4,7 +4,7 @@ El módulo Transfer hace uso de los archivos de configuración para preestablece
 servidores usando un protocolo (driver) específico. Cada grupo de configuración permite definir el driver 
 que debe ser usado así como los parámetros de acceso al servicio.
 
-Para crear una conexión usando un grupo específico sólo tenemos que hacer `Transfer::factory('grupo')`. En 
+Para crear una conexión usando un grupo específico sólo tenemos que hacer `Transfer::instance('grupo')`. En 
 el caso de no necesitar nada más que un grupo, este puede ser llamado `default` y entonces no resulta necesario
 pasarle el nombre del grupo al instanciar un nuevo elemento de Transfer.
 

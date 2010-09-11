@@ -18,18 +18,21 @@ abstract class Kohana_Transfer
   protected $_config;
 
   /**
-   * Create a new instance
+   * @var array instances
+   */
+  protected static $_instances = array();
+
+  /**
+   * Create a new instance or return if exist
    * 
    * @param string $group name of config group
    * @return class instance of used driver
    */
-  public static function factory($group = 'default')
+  public static function instance($group = 'default')
   { 
-    static $instances = array();
-    
-    if(isset($instances[$group]))
+    if(isset(Transfer::$instances[$group]))
     {
-      return $instances[$group];
+      return Transfer::$instances[$group];
     }
 
     $config = Kohana::config('transfer');
@@ -44,7 +47,7 @@ abstract class Kohana_Transfer
     // Set the class name
     $class = 'Transfer_'.$config['driver'];
 
-    return $instances[$group] = new $class($config);
+    return Transfer::$instances[$group] = new $class($config);
   }
 
   /**
